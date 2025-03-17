@@ -97,6 +97,10 @@ document.addEventListener('DOMContentLoaded', () => {
     selector: '.glightbox'
   });
 
+  const lightbox = GLightbox({
+    selector: '.glightbox'
+  });
+
   /**
    * Porfolio isotope and filter
    */
