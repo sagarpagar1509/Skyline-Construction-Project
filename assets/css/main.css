@@ -1048,7 +1048,7 @@ section {
 
 @media (max-width: 575px) {
   .features .nav-link h4 {
-    font-size: 16px;
+    font-size: 12px;
   }
 }
 
@@ -2918,4 +2918,36 @@ section {
 .purecounter::after {
   content: '+';
   margin-left: 5px; 
+}
+
+.footer-links ul li i {
+  margin-right: 10px; 
+  color: var(--color-primary); 
+  font-size: 16px; 
+}
+
+
+
+.whatsapp-btn {
+  position: fixed;
+  bottom: 65px; /* Adjust based on your preference */
+  right: 12px; /* Adjust for positioning */
+  background-color: #25d366; /* WhatsApp green */
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  text-decoration: none;
+}
+
+.whatsapp-btn:hover {
+  transform: scale(1.1);
+  background-color: #1ebe5d;
+  color: white;
 }
