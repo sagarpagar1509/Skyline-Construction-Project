@@ -1340,6 +1340,12 @@ section {
   min-height: 400px;
 }
 
+@media (max-width: 668px) {
+  .alt-services .img-bg {
+    margin: 0px 15px;
+  }
+}
+
 .alt-services h3 {
   font-size: 28px;
   font-weight: 700;
@@ -1405,6 +1411,8 @@ section {
   font-size: 14px;
   margin-bottom: 0;
 }
+
+
 
 /*--------------------------------------------------------------
 # About Section
