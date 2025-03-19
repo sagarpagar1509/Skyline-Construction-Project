@@ -117,13 +117,13 @@
         <div class="row gy-4 mt-1">
 
           <div class="col-lg-6 ">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621"
-              frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>
+           
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3748.809980443082!2d73.83836127903082!3d20.01648833341057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bddc1d7eafa33cf%3A0x1114ad8b0cb8f57!2sKrishna%20Heights!5e0!3m2!1sen!2sin!4v1742368309821!5m2!1sen!2sin"
+               width="600" height="450" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div><!-- End Google Maps -->
 
           <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form id="contact-form" class="php-email-form">
               <div class="row gy-4">
                 <div class="col-lg-6 form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
@@ -136,17 +136,19 @@
                 <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
               </div>
               <div class="form-group">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                <textarea class="form-control" name="message" id="message" rows="5" placeholder="Message" required></textarea>
+
               </div>
               <div class="my-3">
                 <div class="loading">Loading</div>
-                <div class="error-message"></div>
+                <!-- <div class="error-message"></div> -->
                 <div class="sent-message">Your message has been sent. Thank you!</div>
               </div>
               <div class="text-center"><button type="submit">Send Message</button></div>
             </form>
           </div>
 
+          
 
           
 
@@ -259,6 +261,70 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Initialize EmailJS
+        emailjs.init("GYIp6E_uSF3Bag2tK"); // Replace with your Public Key
+
+        document.getElementById("contact-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Show loading message
+            document.querySelector(".loading").style.display = "block";
+
+            // Ensure all elements exist before accessing their values
+            const nameInput = document.getElementById("name");
+            const emailInput = document.getElementById("email");
+            const subjectInput = document.getElementById("subject");
+            // const messageInput = document.getElementById("message");
+            const messageInput = document.querySelector("textarea[name='message']");
+
+
+            if (!nameInput || !emailInput || !subjectInput || !messageInput) {
+                console.error("One or more form fields are missing!");
+                return;
+            }
+
+            // Collect form data
+            const formData = {
+                from_name: nameInput.value,
+                from_email: emailInput.value,
+                subject: subjectInput.value,
+                message: messageInput.value
+            };
+
+            // Send email using EmailJS
+            emailjs.send("service_ykr4ez8", "template_gyjotvh", formData)
+                .then(function(response) {
+                    console.log("Email sent successfully:", response);
+
+                    // Show success message
+                    document.querySelector(".sent-message").style.display = "block";
+                    document.querySelector(".loading").style.display = "none";
+                    // document.querySelector(".error-message").style.display = "none";
+
+                    // Clear form fields
+                    document.getElementById("contact-form").reset();
+                })
+                .catch(function(error) {
+                    console.error("Email sending failed:", error);
+
+                    // Show error message
+                    // document.querySelector(".error-message").style.display = "block";
+                    document.querySelector(".loading").style.display = "none";
+                });
+
+                console.log("Form Data:", formData);
+        });
+    });
+</script>
+
+
+
 
 </body>
 
